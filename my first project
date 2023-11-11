@@ -1,0 +1,60 @@
+Define an empty list to store tasks
+tasks = []
+
+# Function to add a task
+def add_task(task_description):
+    tasks.append({"description": task_description, "completed": False})
+
+# Function to mark a task as completed
+def complete_task(task_index):
+    if 0 <= task_index < len(tasks):
+        tasks[task_index]["completed"] = True
+
+# Function to update a task's description
+def update_task(task_index, new_description):
+    if 0 <= task_index < len(tasks):
+        tasks[task_index]["description"] = new_description
+
+# Function to remove a task
+def remove_task(task_index):
+    if 0 <= task_index < len(tasks):
+        del tasks[task_index]
+
+# Function to display the current list of tasks
+def display_tasks():
+    for index, task in enumerate(tasks):
+        status = "Completed" if task["completed"] else "Not Completed"
+        print(f"{index+1}. {task['description']} - {status}")
+
+# Main application loop
+while True:
+    print("\n--- To-Do List Application ---")
+    print("1. Add a task")
+    print("2. Mark a task as completed")
+    print("3. Update a task description")
+    print("4. Remove a task")
+    print("5. Display tasks")
+    print("6. Exit")
+    
+    choice = input("Enter your choice: ")
+    
+    if choice == "1":
+        task_description = input("Enter task description: ")
+        add_task(task_description)
+    elif choice == "2":
+        task_index = int(input("Enter the task number to mark as completed: ")) - 1
+        complete_task(task_index)
+    elif choice == "3":
+        task_index = int(input("Enter the task number to update: ")) - 1
+        new_description = input("Enter the new description: ")
+        update_task(task_index, new_description)
+    elif choice == "4":
+        task_index = int(input("Enter the task number to remove: ")) - 1
+        remove_task(task_index)
+    elif choice == "5":
+        display_tasks()
+    elif choice == "6":
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please try again.")
